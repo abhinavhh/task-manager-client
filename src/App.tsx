@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Login from "./features/auth/pages/Login"
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        
+        <Route path="" element={<Login />} />
       </Routes>
     </BrowserRouter>
   )

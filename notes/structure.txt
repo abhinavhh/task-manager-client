@@ -1,0 +1,65 @@
+taskmanagement-frontend/
+│── public/                   # Static assets (favicons, logos, etc.)
+│── src/
+│   ├── assets/               # Images, icons, etc.
+│   ├── components/           # Reusable UI components
+│   │   ├── layout/           # Layout components (Navbar, Sidebar, Footer)
+│   │   ├── common/           # Buttons, Modals, Inputs, Loaders
+│   │   └── dashboard/        # Task cards, stats widgets, etc.
+│   │
+│   ├── features/             # Feature-specific modules (User, Admin, Tasks, Auth)
+│   │   ├── auth/             # Login, Register, Forgot Password
+│   │   │   ├── pages/
+│   │   │   │   ├── Login.tsx
+│   │   │   │   ├── Register.tsx
+│   │   │   │   └── ForgotPassword.tsx
+│   │   │   ├── services/     # API calls for auth
+│   │   │   └── hooks/        # Auth-related hooks (useAuth)
+│   │   │
+│   │   ├── tasks/
+│   │   │   ├── pages/
+│   │   │   │   ├── TaskList.tsx
+│   │   │   │   ├── TaskDetails.tsx
+│   │   │   │   ├── CreateTask.tsx
+│   │   │   │   └── EditTask.tsx
+│   │   │   ├── services/     # API calls for tasks
+│   │   │   └── components/   # TaskTable, TaskCard, TaskForm
+│   │   │
+│   │   └── admin/
+│   │       ├── pages/
+│   │       │   ├── UserManagement.tsx
+│   │       │   ├── Dashboard.tsx
+│   │       │   └── Reports.tsx
+│   │       ├── services/     # API calls for admin
+│   │       └── components/   # UserTable, RoleBadge
+│   │
+│   ├── hooks/                # Global reusable hooks
+│   │   ├── useAuth.ts        # Manage auth state, token, role
+│   │   ├── useAxios.ts       # Axios interceptor with JWT
+│   │   └── useTasks.ts       # Task state management
+│   │
+│   ├── lib/                  # Utilities (jwt decode, helpers)
+│   │   ├── api.ts            # Axios instance config
+│   │   ├── constants.ts      # Constants (roles, API endpoints)
+│   │   └── helpers.ts        # Utility functions
+│   │
+│   ├── routes/               # App routing
+│   │   ├── AppRoutes.tsx     # Main routes with role-based protection
+│   │   ├── ProtectedRoute.tsx # Protect routes (Admin/User only)
+│   │
+│   ├── store/                # State management (Zustand/Redux)
+│   │   ├── authStore.ts      # Auth state
+│   │   └── taskStore.ts      # Task state
+│   │
+│   ├── styles/               # Tailwind global styles
+│   │   └── index.css
+│   │
+│   ├── App.tsx               # Root app
+│   └── main.tsx              # Vite entry
+│
+│── .env                      # API base URL, JWT secret
+│── tailwind.config.js
+│── postcss.config.js
+│── tsconfig.json
+│── vite.config.ts
+│── package.json
