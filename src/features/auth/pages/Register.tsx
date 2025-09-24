@@ -1,3 +1,4 @@
+import Input from "../../../Components/common/Input"
 
 const Register = () => {
   return (
@@ -5,6 +6,13 @@ const Register = () => {
 
         <form action="">
             <label htmlFor="">username</label>
+            <Input
+                type="text"
+                name="username" 
+                value="username" 
+                placeholder="Enter username" 
+                id="username" 
+            />
         </form>
 
     </div>
