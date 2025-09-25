@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Input } from "@/Components/common/Input";
-import { Button } from "@/Components/common/button"; 
+import { Input } from "@/Components/common/input";
+import { Button } from "@/Components/common/button";
 import { Label } from "@/Components/common/label";
+import { toast, Bounce } from "react-toastify";
+
 import {
   Card,
   CardHeader,
@@ -11,6 +13,7 @@ import {
   CardFooter,
 } from "@/Components/common/card";
 import { useNavigate } from "react-router-dom";
+import authService from "../services";
 
 interface RegisterProps {
   username: string;
@@ -33,45 +36,56 @@ const Register = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
     // Clear error when user starts typing
     if (errors[name as keyof RegisterProps]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
   const validateForm = () => {
     const newErrors: Partial<RegisterProps> = {};
-    
+
     if (!formData.username.trim()) newErrors.username = "Username is required";
     if (!formData.email.trim()) newErrors.email = "Email is required";
     if (!formData.password.trim()) newErrors.password = "Password is required";
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords don't match";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
     setIsLoading(true);
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setIsLoading(false);
-    }, 1500);
+    try {
+      const response = await authService.register(formData);
+      toast.success(response, {
+        position: "top-center",
+        transition: Bounce,
+      });
+      navigate("/");
+    } catch (error: any) {
+      toast.error(
+        error.response.data || error?.message || "Registration failed"
+      );
+      console.log(error);
+    }
+    setIsLoading(false);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center p-6">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl text-primary">Create Account</CardTitle>
+          <CardTitle className="text-2xl text-primary">
+            Create Account
+          </CardTitle>
           <CardDescription className="text-base">
             Sign up to get started with your journey
           </CardDescription>
@@ -138,14 +152,16 @@ const Register = () => {
               className={errors.confirmPassword ? "border-destructive" : ""}
             />
             {errors.confirmPassword && (
-              <p className="text-destructive text-sm">{errors.confirmPassword}</p>
+              <p className="text-destructive text-sm">
+                {errors.confirmPassword}
+              </p>
             )}
           </div>
         </CardContent>
 
         <CardFooter className="flex flex-col space-y-4">
-          <Button 
-            onClick={handleSubmit} 
+          <Button
+            onClick={handleSubmit}
             disabled={isLoading}
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
           >
@@ -158,10 +174,10 @@ const Register = () => {
               "Create Account"
             )}
           </Button>
-          
+
           <p className="text-center text-sm text-muted-foreground">
             Already have an account?{" "}
-            <button 
+            <button
               className="text-primary hover:underline font-medium"
               onClick={() => navigate("/")}
             >
