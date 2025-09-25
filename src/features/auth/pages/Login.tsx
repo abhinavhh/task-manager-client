@@ -6,7 +6,7 @@ import {
   CardContent,
   CardFooter,
 } from "@/Components/common/card";
-import { Input } from "@/Components/common/Input";
+import { Input } from "@/Components/common/input";
 import { Label } from "@radix-ui/react-label";
 import { Button } from "@/Components/common/button";
 import { useNavigate } from "react-router-dom";
@@ -37,12 +37,16 @@ const Login = () => {
     setIsLoading(true);
     try {
       const response = await authService.login(formData);
-      localStorage.setItem("token", response.accessToken);
       toast.success("Login Successfull");
+      if (response.role === "USER") {
+        navigate("/user-dashboard");
+      } else if (response.role === "ADMIN") {
+        navigate("/admin-dashboard");
+      }
     } catch (err) {
       toast.error("Login Failed");
       console.log(err);
-    } finally{
+    } finally {
       setIsLoading(false);
     }
   };

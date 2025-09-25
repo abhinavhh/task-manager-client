@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input } from "@/Components/common/Input";
+import { Input } from "@/Components/common/input";
 import { Button } from "@/Components/common/button";
 import { Label } from "@/Components/common/label";
 import { toast, Bounce } from "react-toastify";
