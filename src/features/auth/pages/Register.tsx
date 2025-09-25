@@ -91,7 +91,7 @@ const Register = () => {
             />
             {errors.username && (
               <p className="text-destructive text-sm">{errors.username}</p>
-            )}
+            )} 
           </div>
 
           <div className="space-y-2">
