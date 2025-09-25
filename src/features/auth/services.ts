@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/lib/utils";
 import { useAuthStore } from "@/store/useAuthStore";
 
-interface LoginPayload{
+export interface LoginPayload{
     username: string;
     password: string;
 }

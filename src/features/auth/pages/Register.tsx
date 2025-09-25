@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input } from "@/Components/common/input";
+import { Input } from "@/Components/common/Input";
 import { Button } from "@/Components/common/button";
 import { Label } from "@/Components/common/label";
 import { toast, Bounce } from "react-toastify";
@@ -70,9 +70,9 @@ const Register = () => {
         transition: Bounce,
       });
       navigate("/");
-    } catch (error: any) {
+    } catch (error) {
       toast.error(
-        error.response.data || error?.message || "Registration failed"
+        "Registration failed"
       );
       console.log(error);
     }
@@ -105,7 +105,7 @@ const Register = () => {
             />
             {errors.username && (
               <p className="text-destructive text-sm">{errors.username}</p>
-            )}
+            )} 
           </div>
 
           <div className="space-y-2">
