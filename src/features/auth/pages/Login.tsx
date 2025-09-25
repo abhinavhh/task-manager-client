@@ -1,90 +1,104 @@
-import React, { useState } from 'react'
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/Components/common/card'
-import { Input } from '@/Components/common/Input'
-import { Label } from '@radix-ui/react-label'
-import { Button } from '@/Components/common/button'
-import { useNavigate } from 'react-router-dom'
-
-interface LoginForm {
-  username: string,
-  password: string,
-}
-
-
+import React, { useState } from "react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/Components/common/card";
+import { Input } from "@/Components/common/Input";
+import { Label } from "@radix-ui/react-label";
+import { Button } from "@/Components/common/button";
+import { useNavigate } from "react-router-dom";
+import authService from "../services";
+import { toast } from "react-toastify";
+import type { LoginPayload } from "../services";
 
 const Login = () => {
-  const [formData, setFormData] = useState<LoginForm>({
-    username: '',
-    password: ''
-  })
+  const [formData, setFormData] = useState<LoginPayload>({
+    username: "",
+    password: "",
+  });
 
   const navigate = useNavigate();
-  // const [errors, setErrors] = useState<LoginForm>()
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  // const [errors, setErrors] = useState<LoginPayload>()
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>){
-    const { name, value } = e.target
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLButtonElement>){
+  const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
-  }
+    try {
+      const response = await authService.login(formData);
+      localStorage.setItem("token", response.accessToken);
+      toast.success("Login Successfull");
+    } catch (err) {
+      toast.error("Login Failed");
+      console.log(err);
+    } finally{
+      setIsLoading(false);
+    }
+  };
 
-    return (
-    <div className='flex justify-center items-center  min-h-screen ' >
-      <Card className='w-md'>
+  return (
+    <div className="flex justify-center items-center  min-h-screen ">
+      <Card className="w-md">
         <CardHeader>
-          <CardTitle className='text-center text-2xl text-primary'>Login</CardTitle>
+          <CardTitle className="text-center text-2xl text-primary">
+            Login
+          </CardTitle>
         </CardHeader>
 
-        <CardContent className='space-y-4'>
-          <div className='space-y-2'>
-            <Label htmlFor='username'>Username</Label>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="username">Username</Label>
             <Input
-              type='text'
-              id='username'
-              name='username'
-              placeholder='Enter your username' 
-              value={formData.username} 
-              onChange={handleChange}/>
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter your username"
+              value={formData.username}
+              onChange={handleChange}
+            />
           </div>
-          <div className='space-y-2'>
-            <Label htmlFor='password'>Password</Label>
+          <div className="space-y-2">
+            <Label htmlFor="password">Password</Label>
             <Input
-              type='password' 
-              id='password' 
-              name='password' 
-              placeholder='Enter your password'
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
               value={formData.password}
-              onChange={handleChange}/>
+              onChange={handleChange}
+            />
           </div>
         </CardContent>
 
-        <CardFooter className='flex flex-col space-y-2'>
+        <CardFooter className="flex flex-col space-y-2">
           <Button
             onClick={handleSubmit}
-            className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-              {isLoading ? (
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+          >
+            {isLoading ? (
               <div className="flex items-center space-x-2">
                 <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                 <span>Signing In...</span>
               </div>
-              ) : (
-                'Sign In'
-              )}
-            </Button>
-            
+            ) : (
+              "Sign In"
+            )}
+          </Button>
+
           <p className="text-center text-sm text-muted-foreground">
             Don't have an account?{" "}
-            <button 
+            <button
               className="text-primary hover:underline font-medium"
               onClick={() => navigate("/register")}
             >
@@ -108,7 +122,7 @@ const Login = () => {
         </div>
       </form> */}
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
