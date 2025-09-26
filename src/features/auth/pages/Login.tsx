@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardHeader,
@@ -13,13 +13,19 @@ import { useNavigate } from "react-router-dom";
 import authService from "../services";
 import { toast } from "react-toastify";
 import type { LoginPayload } from "../services";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const Login = () => {
   const [formData, setFormData] = useState<LoginPayload>({
     username: "",
     password: "",
   });
-
+  // const { accessToken, userRole } = useAuthStore();
+  // useEffect(() => {
+  //   if (accessToken && userRole === "ADMIN") {
+  //     navigate("/admin-dashboard");
+  //   }
+  // });
   const navigate = useNavigate();
   // const [errors, setErrors] = useState<LoginPayload>()
   const [isLoading, setIsLoading] = useState<boolean>(false);

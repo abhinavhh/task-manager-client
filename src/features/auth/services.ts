@@ -22,13 +22,14 @@ const authService = {
 
 
     login: async(payload: LoginPayload): Promise<ResponsePayload> => {
-        const { data } = await axiosInstance.post('/auth/login', payload);
-        useAuthStore.getState().setAuth(data.access, data.refresh, data.role);
+        const { data } = await axiosInstance.post<ResponsePayload>('/auth/login', payload);
+        localStorage.setItem('token', data.accessToken);
+        useAuthStore.getState().setAuth(data.accessToken, data.refreshToken, data.role);
         return data;
     },
 
     register: async(payload: RegisterPayload): Promise<string> => {
-        const { data } = await axiosInstance.post('/auth/register', payload);
+        const { data } = await axiosInstance.post<string>('/auth/register', payload);
         return data;
     },
 
