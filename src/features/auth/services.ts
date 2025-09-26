@@ -23,7 +23,6 @@ const authService = {
 
     login: async(payload: LoginPayload): Promise<ResponsePayload> => {
         const { data } = await axiosInstance.post<ResponsePayload>('/auth/login', payload);
-        localStorage.setItem('token', data.accessToken);
         useAuthStore.getState().setAuth(data.accessToken, data.refreshToken, data.role);
         return data;
     },

@@ -1,5 +1,4 @@
 import { axiosInstance } from "@/lib/utils";
-import { useAuthStore } from "@/store/useAuthStore";
 
 export interface UserDetails {
     id: number;
@@ -11,11 +10,7 @@ export interface UserDetails {
 
 export const userApi = {
     getUser: async(): Promise<UserDetails[]> => {
-        const { data } = await axiosInstance.get<UserDetails[]>('/admin/user/all', {
-            headers: {
-                "Authorization": `Bearer ${useAuthStore.getState().accessToken}`
-            }
-        });
+        const { data } = await axiosInstance.get<UserDetails[]>('/admin/user/all');
         return data;
     }
 }

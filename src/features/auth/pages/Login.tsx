@@ -20,12 +20,12 @@ const Login = () => {
     username: "",
     password: "",
   });
-  // const { accessToken, userRole } = useAuthStore();
-  // useEffect(() => {
-  //   if (accessToken && userRole === "ADMIN") {
-  //     navigate("/admin-dashboard");
-  //   }
-  // });
+  const { accessToken, userRole } = useAuthStore();
+  useEffect(() => {
+    if (accessToken && userRole === "ADMIN") {
+      navigate("/admin-dashboard");
+    }
+  });
   const navigate = useNavigate();
   // const [errors, setErrors] = useState<LoginPayload>()
   const [isLoading, setIsLoading] = useState<boolean>(false);
