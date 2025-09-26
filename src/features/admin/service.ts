@@ -8,7 +8,7 @@ export interface UserDetails {
     email: string
 }
 
-export const userApi = {
+export const adminService = {
     getUser: async(): Promise<UserDetails[]> => {
         const { data } = await axiosInstance.get<UserDetails[]>('/admin/user/all');
         return data;

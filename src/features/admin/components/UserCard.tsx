@@ -1,0 +1,45 @@
+// features/admin/components/UserCard.tsx
+import { Avatar, AvatarFallback } from "@/Components/common/avatar";
+import { Badge } from "@/Components/common/badge";
+import type { UserDetails } from "../service";
+
+interface UserCardProps {
+  user: UserDetails;
+}
+
+const getInitials = (username: string) => {
+  return username.substring(0, 2).toUpperCase();
+};
+
+const getRoleBadgeVariant = (role: string | null) => {
+  switch (role) {
+    case "ADMIN": return "destructive";
+    case "USER": return "secondary";
+    default: return "outline";
+  }
+};
+
+const getRoleDisplay = (role: string | null) => {
+  return role || "GUEST";
+};
+
+export const UserCard = ({ user }: UserCardProps) => {
+  return (
+    <div className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+      <div className="flex items-center space-x-4">
+        <Avatar className="h-10 w-10">
+          <AvatarFallback className="bg-primary/10 text-primary">
+            {getInitials(user.username)}
+          </AvatarFallback>
+        </Avatar>
+        <div>
+          <h3 className="font-medium text-foreground">{user.username}</h3>
+          <p className="text-sm text-muted-foreground">{user.email}</p>
+        </div>
+      </div>
+      <Badge variant={getRoleBadgeVariant(user.role)}>
+        {getRoleDisplay(user.role)}
+      </Badge>
+    </div>
+  );
+};
