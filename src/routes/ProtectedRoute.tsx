@@ -10,7 +10,7 @@ export default function ProtectedRoute({ children, allowedRoles }: Props) {
   const { accessToken, userRole } = useAuthStore();
 
   if (!accessToken) {
-    return <Navigate to="" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   if (!userRole || !allowedRoles.includes(userRole)) {

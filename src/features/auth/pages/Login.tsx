@@ -49,8 +49,8 @@ const Login = () => {
       } else if (response.role === "ADMIN") {
         navigate("/admin-dashboard");
       }
-    } catch (err) {
-      toast.error("Login Failed");
+    } catch (err: any) {
+      toast.error(err.response?.data || err.message || "Login Failed");
       console.log(err);
     } finally {
       setIsLoading(false);

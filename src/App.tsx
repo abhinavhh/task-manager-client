@@ -4,18 +4,29 @@ import Register from "./features/auth/pages/Register";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import AdminDashboard from "./features/admin/pages/AdminDashboard";
+import RootPage from "./Pages/RootPage";
+import UserDashboard from "./features/user/pages/UserDashboard";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="" element={<Login />} />
+        <Route path="" element={<RootPage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/admin-dashboard"
           element={
             <ProtectedRoute allowedRoles={["ADMIN"]}>
               <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user-dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["USER"]}>
+              <UserDashboard />
             </ProtectedRoute>
           }
         />

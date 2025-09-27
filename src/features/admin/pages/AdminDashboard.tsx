@@ -1,14 +1,24 @@
 import { useAdminUsers } from "../hooks";
-import { 
-  LoadingState, 
-  ErrorState, 
-  DashboardHeader, 
-  StatsCards, 
-  UsersList, 
-  AllUsersSummary 
+import {
+  LoadingState,
+  ErrorState,
+  DashboardHeader,
+  StatsCards,
+  UsersList,
+  AllUsersSummary,
 } from "..";
+import { useEffect } from "react";
+import { useAuthStore } from "@/store/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
+  const accessToken = useAuthStore((state) => state.accessToken);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!accessToken) {
+      navigate("/login", { replace: true });
+    }
+  }, [accessToken, navigate]);
   const {
     userData,
     filteredUsers,
@@ -17,7 +27,7 @@ const AdminDashboard = () => {
     adminUsers,
     loading,
     error,
-    refetch
+    refetch,
   } = useAdminUsers();
 
   if (loading) return <LoadingState />;
@@ -27,7 +37,7 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         <DashboardHeader onRefresh={refetch} />
-        <StatsCards 
+        <StatsCards
           totalUsers={totalUsers}
           regularUsers={regularUsers}
           adminUsers={adminUsers}
