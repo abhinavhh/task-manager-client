@@ -1,27 +1,33 @@
-import { Card } from '@/Components/common/card'
-import StatCard from './StatCard'
+import { Card } from "@/Components/common/card";
+import StatCard from "./StatCard";
 
 const DashboardContent = () => {
   return (
-    <div className="grid grid-rows-3 gap-4 mx-2">
-              <div className="grid grid-cols-[1fr_1fr_1fr_1fr] gap-2">
-                <StatCard title="Total Task" value="24" />
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
-              </div>
-              <div className="grid grid-cols-[2.08fr_1fr_1fr] gap-2">
-                <Card className=""></Card>
-                <Card></Card>
-                <Card></Card>
-              </div>
-              <div className="grid grid-cols-[1.5fr_1.5fr_1fr] gap-2">
-                <Card></Card>
-                <Card></Card>
-                <Card></Card>
-              </div>
-            </div>
-  )
-}
+    <div className="grid gap-4">
+      {/* Stats row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        <StatCard title="Total Task" value="24" />
+        <StatCard title="Completed" value="10" />
+        <StatCard title="In Progress" value="15" />
+        <StatCard title="Todo" value="5" />
+      </div>
 
-export default DashboardContent
+      {/* Middle row */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <Card className="md:col-span-2"></Card>
+        <Card></Card>
+        {/* remove 3rd card on small screens */}
+        <Card className="hidden md:block"></Card>
+      </div>
+
+      {/* Bottom row */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <Card className="md:col-span-1"></Card>
+        <Card className="md:col-span-1"></Card>
+        <Card className="hidden md:block"></Card>
+      </div>
+    </div>
+  );
+};
+
+export default DashboardContent;
