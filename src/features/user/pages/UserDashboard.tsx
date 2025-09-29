@@ -7,7 +7,7 @@ const UserDashboard = () => {
   return (
     <div className="bg-background p-6">
       <div className="space-y-6 w-full"> 
-        <div className="grid md:grid-cols-[200px_1fr] gap-2">
+        <div className="grid md:grid-cols-[200px_1fr] gap-2 min-h-screen">
 
           {/* Navigation Left Side*/}
           <MenuBar/>
