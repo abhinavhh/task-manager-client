@@ -5,7 +5,7 @@ const DashboardContent = () => {
   return (
     <div className="grid gap-4">
       {/* Stats row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
         <StatCard title="Total Task" value="24" />
         <StatCard title="Completed" value="10" />
         <StatCard title="In Progress" value="15" />
