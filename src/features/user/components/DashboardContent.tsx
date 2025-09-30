@@ -14,17 +14,17 @@ const DashboardContent = () => {
 
       {/* Middle row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-        <Card className="md:col-span-2"></Card>
+        <Card></Card>
         <Card></Card>
         {/* remove 3rd card on small screens */}
-        <Card className="hidden md:block"></Card>
+        <Card className=""></Card>
       </div>
 
       {/* Bottom row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
         <Card className="md:col-span-1"></Card>
         <Card className="md:col-span-1"></Card>
-        <Card className="hidden md:block"></Card>
+        <Card className=""></Card>
       </div>
     </div>
   );
