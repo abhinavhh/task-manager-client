@@ -53,3 +53,36 @@ export interface UpcomingDeadline {
   date: string;
   time: string;
 }
+
+// Type Definitions
+export interface PageHeaderProps {
+  onBack: () => void;
+}
+
+export interface TaskFormProps {
+  onSubmit: (data: TaskFormData) => void;
+  onCancel: () => void;
+}
+
+export interface TaskFormData {
+  title: string;
+  description: string;
+  priority: string;
+  status: string;
+}
+
+export interface FormFieldProps {
+  label: string;
+  required?: boolean;
+  children: React.ReactNode;
+  icon?: React.ComponentType<{ className?: string }>;
+}
+
+export interface TaskPreviewProps {
+  formData: TaskFormData;
+}
+
+export interface QuickActionsProps {
+  onSaveDraft: () => void;
+  onUseTemplate: () => void;
+}

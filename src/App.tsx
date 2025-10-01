@@ -6,6 +6,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import AdminDashboard from "./features/admin/pages/AdminDashboard";
 import RootPage from "./Pages/RootPage";
 import UserDashboard from "./features/user/pages/UserDashboard";
+import CreateTask from "./features/user/pages/CreateTask";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="user-dashboard/create-task" element={<CreateTask />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

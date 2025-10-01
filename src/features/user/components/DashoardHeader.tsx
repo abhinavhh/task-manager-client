@@ -1,11 +1,13 @@
 import { Button } from "@/Components/common/button";
 import { Search, Bell, Settings, Plus } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 interface DashboardHeaderProps {
   userName: string;
 }
 
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({ userName }) => {
+  const navigate = useNavigate();
   return (
     <div className="flex items-center justify-between pb-6">
       <div>
@@ -26,10 +28,12 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ userName }) => {
         <Button variant="outline" size="icon">
           <Settings className="h-4 w-4" />
         </Button>
-        <Button className="gap-2">
-          <Plus className="h-4 w-4" />
-          New Task
-        </Button>
+        <Link to="create-task">
+          <Button className="gap-2">
+            <Plus className="h-4 w-4" />
+            New Task
+          </Button>
+        </Link>
       </div>
     </div>
   );
