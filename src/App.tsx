@@ -31,7 +31,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="user-dashboard/create-task" element={<CreateTask />} />
+        <Route path="/create-task" element={<CreateTask />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

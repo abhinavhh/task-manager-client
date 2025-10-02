@@ -28,7 +28,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ userName }) => {
         <Button variant="outline" size="icon">
           <Settings className="h-4 w-4" />
         </Button>
-        <Link to="create-task">
+        <Link to="/create-task">
           <Button className="gap-2">
             <Plus className="h-4 w-4" />
             New Task

@@ -55,9 +55,7 @@ export interface UpcomingDeadline {
 }
 
 // Type Definitions
-export interface PageHeaderProps {
-  onBack: () => void;
-}
+
 
 export interface TaskFormProps {
   onSubmit: (data: TaskFormData) => void;
