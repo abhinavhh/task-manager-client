@@ -1,12 +1,6 @@
 import { Button } from "@/Components/common/button";
 import { Input } from "@/Components/common/input";
-import {
-  FileText,
-  Flag,
-  Paperclip,
-  Save,
-  Send,
-} from "lucide-react";
+import { FileText, Flag, Paperclip, Save, Send } from "lucide-react";
 import { useState } from "react";
 import type { TaskFormProps, TaskFormData } from "../interface.model";
 
@@ -43,7 +37,9 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onCancel }) => {
             type="text"
             placeholder="Enter task title..."
             value={formData.title}
-            onChange={(e) => handleInputChange("title", e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleInputChange("title", e.target.value)
+            }
             required
             className="w-full"
           />
@@ -59,7 +55,9 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onCancel }) => {
           </label>
           <textarea
             value={formData.description}
-            onChange={(e) => handleInputChange("description", e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              handleInputChange("description", e.target.value)
+            }
             placeholder="Describe the task in detail..."
             rows={5}
             className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-100 transition-all resize-none"
@@ -79,7 +77,9 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onCancel }) => {
             </label>
             <select
               value={formData.status}
-              onChange={(e) => handleInputChange("status", e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                handleInputChange("status", e.target.value)
+              }
               className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 transition-all bg-white"
               required
             >
@@ -101,7 +101,9 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onCancel }) => {
             </label>
             <select
               value={formData.priority}
-              onChange={(e) => handleInputChange("priority", e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                handleInputChange("priority", e.target.value)
+              }
               className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100 transition-all bg-white"
               required
             >
