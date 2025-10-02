@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from "@/Components/common/card";
 import { Input } from "@/Components/common/input";
-import { Label } from "@radix-ui/react-label";
+import { Label } from "@/Components/common/label";
 import { Button } from "@/Components/common/button";
 import { useNavigate } from "react-router-dom";
 import authService from "../services";
@@ -117,20 +117,6 @@ const Login = () => {
           </p>
         </CardFooter>
       </Card>
-
-      {/* <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username</label>
-          <input type="text" className='border' value={formData.username} name='username' onChange={handleChange}/> 
-        </div>
-        <div>
-          <label>Password</label>
-          <input type="password" className='border' value={formData.password} name='password' onChange={handleChange} />
-        </div>
-        <div>
-          <button type='submit'>Submit</button>
-        </div>
-      </form> */}
     </div>
   );
 };
