@@ -1,0 +1,1 @@
+export {Input} from '../../Components/common/input';
