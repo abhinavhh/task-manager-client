@@ -1,13 +1,12 @@
 import { Button } from "@/Components/common/button";
 import { Search, Bell, Settings, Plus } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface DashboardHeaderProps {
   userName: string;
 }
 
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({ userName }) => {
-  const navigate = useNavigate();
   return (
     <div className="flex items-center justify-between pb-6">
       <div>
